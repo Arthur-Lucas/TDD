@@ -1,25 +1,33 @@
 const fs = require("fs/promises");
+
+// Définit la fonction 'AvailableBook'
 function AvailableBook() {
-  //   return 3;
   return new Promise((resolve, reject) => {
+    // Lit le fichier 'booking.json' de manière asynchrone
     fs.readFile("./booking.json")
       .then((data) => {
         var JSONParsed = JSON.parse(data);
 
+        // Filtre les hôtels réservés à partir des données JSON
+
         const bookedHotels = Object.entries(JSONParsed)
           .filter(([hotel, details]) => details[0].book === "true")
           .map(([hotel, details]) => ({
+            // Transforme les hôtels réservés en objets avec nom et images
             name: details[0].name,
             pictures: details[0].pictures,
           }));
 
-        bookedHotels.forEach(hotel => {
+        bookedHotels.forEach((hotel) => {
           console.log(`Hotel Name: ${hotel.name}`);
           console.log(`Pictures:`);
-          Object.values(hotel.pictures).forEach(picture => console.log(picture));
+          Object.values(hotel.pictures).forEach((picture) =>
+            console.log(picture)
+          );
           console.log("----");
         });
 
+        // Résout la promesse avec les hôtels réservés
         resolve(bookedHotels);
       })
       .catch((error) => {
@@ -27,58 +35,5 @@ function AvailableBook() {
       });
   });
 }
-
-// const bookings = {
-//   "hotel1": [
-//       {
-//           "name": "aaaaaaaaaaa",
-//           "pictures": {
-//               "photo1": "EEEEEEEEEEE.png",
-//               "photo2": "DDDDDDDDDDD.png"
-//           },
-//           "book": "false"
-//       }
-//   ],
-//   "hotel2": [
-//       {
-//           "name": "bbbbbbbbbbbbbbb",
-//           "pictures": {
-//               "photo1": "FFFFFFFFFFF.png",
-//               "photo2": "GGGGGGGGGGG.png"
-//           },
-//           "book": "false"
-//       }
-//   ],
-//   "hotel3": [
-//       {
-//           "name": "cccccccccccccccccccc",
-//           "pictures": {
-//               "photo1": "HHHHHHHHHHHH.png",
-//               "photo2": "IIIIIIIIIIIIIIIIIIIIIIIIIIIIIII.png"
-//           },
-//           "book": "true"
-//       }
-//   ],
-// };
-
-// const list_booked_hotels = () => {
-//   const bookedHotels = Object.entries(bookings)
-//       .filter(([hotel, details]) => details[0].book === "true")
-//       .map(([hotel, details]) => ({
-//           name: details[0].name,
-//           pictures: details[0].pictures,
-//       }));
-
-//   bookedHotels.forEach(hotel => {
-//       console.log(`Hotel Name: ${hotel.name}`);
-//       console.log(`Pictures:`);
-//       Object.values(hotel.pictures).forEach(picture => console.log(picture));
-//       console.log("----");
-//   });
-
-//   return bookedHotels;
-// };
-
-// module.exports = list_booked_hotels
 
 module.exports = AvailableBook;

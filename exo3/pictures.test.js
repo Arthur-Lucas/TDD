@@ -1,8 +1,11 @@
 const listPictures = require("./pictures");
 
+// Définit un test unitaire qui vérifie si les images d'un hôtel sont correctement listées
 test("must list pictures of the hotel", async () => {
   const hotelName = "hotel1";
+  // Appelle la fonction 'listPictures' avec le nom de l'hôtel et attend sa résolution
   const result = await listPictures(hotelName);
+  // Utilise une instruction switch pour déterminer quelles images sont attendues en fonction du nom de l'hôtel
   switch (hotelName) {
     case "hotel1":
       expect(result).toEqual({
