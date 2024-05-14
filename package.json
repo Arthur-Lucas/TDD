@@ -1,0 +1,13 @@
+{
+  "devDependencies": {
+    "jest": "^29.7.0"
+    
+  },
+  "scripts": {
+    "test": "jest --detectOpenHandles",
+    "test1": "jest exo1",
+    "test2": "jest exo2",
+    "test3": "jest exo3",
+    "test4": "jest exo4"
+  }
+}
