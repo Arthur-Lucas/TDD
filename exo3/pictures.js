@@ -1,4 +1,4 @@
-const hotels_db = {
+const hotels = {
   "hotel1": [
     {
       "name": "aaaaaaaaaaa",
@@ -26,25 +26,30 @@ const hotels_db = {
       }
     }
   ],
+  "hotel4": [
+    {
+      "name": "hotelSansPhotos"
+    }
+  ]
 }
 
 
 
 const get_pictures = (name) => {
   const pictures = [];
-  for (const hotel in hotels_db) {
-      const hotelData = hotels_db[hotel];
-      for (const entry of hotelData) {
-          if (entry.name === name && entry.pictures) {
-              const pics = Object.values(entry.pictures);
-              if (pics.length > 0) {
-                  pictures.push(...pics);
-              }
-          }
+  for (const hotel in hotels) {
+    const hotelData = hotels[hotel];
+    for (const entry of hotelData) {
+      if (entry.name === name && entry.pictures) {
+        const pics = Object.values(entry.pictures);
+        if (pics.length > 0) {
+          pictures.push(...pics);
+        }
       }
+    }
   }
   if (pictures.length === 0) {
-      return "Vous n'avez fait aucune réservation";
+    return "Vous n'avez fait aucune réservation";
   }
   return pictures;
 }

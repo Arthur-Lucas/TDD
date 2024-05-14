@@ -9,7 +9,7 @@ describe('get_pictures', () => {
 
   test('should return an error message if no photos are available', () => {
     const expectedMessage = "Vous n'avez fait aucune réservation";
-    const result = get_pictures('nonExistentHotel');
+    const result = get_pictures('hotel4');
     expect(result).toEqual(expectedMessage);
   });
 });

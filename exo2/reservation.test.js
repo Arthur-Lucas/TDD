@@ -1,14 +1,9 @@
-const listBookings = require("./reservation");
+const list_reservation = require('./reservation.js');
 
-// Définit un test unitaire qui vérifie si les réservations sont correctement listées
-
-test("must list bookings", async () => {
-  // Appelle la fonction 'listBookings' et attend sa résolution
-  const result = await listBookings();
-  // Vérifie si les réservations listées correspondent aux valeurs attendues
-  expect(result).toEqual({
-    reservation1: "aaaaaaaaaaa",
-    reservation2: "bbbbbbbbb",
-    reservation3: "ccccccccccc",
+describe('list_reservation', () => {
+  test('should return the correct values', () => {
+    const expectedValues = ["aaaaaaaaaaa", "bbbbbbbbb", "ccccccccccc"];
+    const result = list_reservation();
+    expect(result).toEqual(expectedValues);
   });
 });
