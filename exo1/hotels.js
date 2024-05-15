@@ -1,4 +1,4 @@
-// Mock for MongoDB client
+
 class MockMongoClient {
   constructor() {
     this.data = {
@@ -8,21 +8,18 @@ class MockMongoClient {
     };
   }
 
-  // Simulating find operation
+
   async find() {
     return this.data;
   }
 }
 
-// Function to mock MongoDB client
 const mockMongoClient = () => {
   return new MockMongoClient();
 };
 
-// Function to list hotels
 const list_hotel = async (mongoClient = mockMongoClient()) => {
   try {
-    // Simulating fetching data from MongoDB
     const hotelData = await mongoClient.find();
 
     const values = Object.values(hotelData);
