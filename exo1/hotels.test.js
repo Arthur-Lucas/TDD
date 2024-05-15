@@ -3,16 +3,17 @@ const { list_hotel, mockMongoClient } = require('./hotels');
 describe('list_hotel', () => {
   test('returns the correct values', async () => {
     const expectedValues = ["aaaaaaaaaaa", "bbbbbbbbb", "ccccccccccc"];
-    const result = await list_hotel();
+
+    const mockClient = mockMongoClient();
+    const result = await list_hotel(mockClient);
+    
     expect(result).toEqual(expectedValues);
   });
 
   test('returns an error message when no hotels are available', async () => {
-    const mockClient = {
-      async find() {
-        return {};
-      }
-    };
+    const mockClient = mockMongoClient();
+    mockClient.data = {};
+
     const result = await list_hotel(mockClient);
     expect(result).toEqual("Aucun hôtel disponible");
   });
